@@ -5,7 +5,8 @@
 <html>
     <head>
 	<style>
-	/* Created by Dmitri */
+
+		
 
 
 body {
@@ -15,6 +16,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-color:#FFFF00;
+    overflow: hidden;
 }
 
 #mainContainer {
@@ -23,6 +25,9 @@ body {
     width:100%;
     top:0;
     left:0;
+    background-image: url('vector-forest-sunset-forest-sunset-forest-wallpaper-preview.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #score {
@@ -33,14 +38,23 @@ body {
     text-align:center;
     font-size:60px;
     font-weight:900;
-    color:#45f;
+    color: red;
+    animation: shake .5s infinite;
 }
+
+@keyframes shake {
+    0%{ transform: translateX(0px);}   
+    20%{ transform: translateX(10px);}   
+    80%{ transform: translateX(-10px);}   
+    100%{ transform: translateX(0px);}   
+}
+
 
 #showPoint {
     position:absolute;
     top:0;
     left:0;
-    background:rgba(255,0,0,0.6);
+    background:transparent;
     margin:0;
 }
 
@@ -70,6 +84,7 @@ body {
     margin:0;
     top:0;
     padding-left:10px;
+    background-color: rgb(202, 70, 70);
 }
 
 #startMenu {
@@ -106,7 +121,7 @@ body {
 #timerDiv {
    height:8px;
    padding:0px;
-   border:2px solid blue;
+   border:2px solid rgb(255, 255, 255);
    width:50%;
    position:absolute;
    bottom:20px;
@@ -126,14 +141,14 @@ body {
 @keyframes countTime {
    0% {
        width: 100%;
-       background-color: green;
+       background-color: rgb(0, 255, 0);
    }
    50% {
-       background-color:white;
+       background-color: yellow;
    }
    100% {
        width: 0%;
-       background-color: black;
+       background-color: rgb(255, 0, 0);
    }
 }
 	</style>
@@ -162,8 +177,6 @@ body {
 	// Created by VICTORASUM£!
 
 window.onload = function(){
-alert("Thanks everyone (specially susec mr.afram) .for helping me to this level")
-alert("Please any help from you ...");
 
 String.prototype.repeat =  String.prototype.repeat ||
   function(c){
@@ -371,18 +384,18 @@ function loadGame(){
         x:30,
         y:100,
         dy:3,
-          r:50,
-          color:"#000",
-          lw:3,
+          r:100,
+          color:"#fff",
+          lw:10,
           start:Math.PI+Math.PI/2,
           end:Math.PI-Math.PI/2
     }
 
     var rope = {
         h:arc.r*2,
-          lw:1,
+          lw:2,
           x:arc.x-25,
-          color:"#000",
+          color:"#f00",
           status:true
     }
 
@@ -391,7 +404,7 @@ function loadGame(){
         y:h/2,
         dy:4,
         height:150,
-        width:7
+        width:20
     }
 
     var boardY;
@@ -404,12 +417,12 @@ function loadGame(){
         ctx.fillRect(board.x,board.y-5,40,board.width+3);
         ctx.fillRect(board.x,board.y-board.height/2,board.width,board.height);
         ctx.moveTo(board.x,board.y-15);
-        ctx.quadraticCurveTo(board.x-10,board.y,board.x,board.y+15);
+        ctx.quadraticCurveTo(board.x-25,board.y,board.x,board.y+25);
         //ctx.lineTo(10,6);
-        ctx.fillStyle = "#36e";
+        ctx.fillStyle = "#fff";
         ctx.fill();
         ctx.closePath();
-        ctx.fillStyle = "#000";
+        ctx.fillStyle = "#f00";
     
         if(board.y >= h || board.y <= 0){
             board.dy *= -1;
